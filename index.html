@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendStyle | Modern Product Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for Calm Color Palette */
+        :root {
+            --primary: #5D8AA8;
+            --secondary: #91AEC4;
+            --accent: #7FB3D5;
+            --light: #F5F7FA;
+            --dark: #2C3E50;
+            --text: #34495E;
+            --text-light: #7F8C8D;
+            --success: #27AE60;
+            --card-bg: #FFFFFF;
+            --border: #E8E8E8;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: #219653;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-count {
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .cart-text {
+            font-weight: 500;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light) 0%, #e8eff5 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: var(--secondary);
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            opacity: 0.1;
+        }
+
+        /* Products Section */
+        .products {
+            background-color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1500;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-header h3 {
+            margin: 0;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-remove {
+            color: var(--text-light);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--dark);
+        }
+
+        .modal-body {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .modal-image {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .modal-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .modal-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .product-features {
+            margin-bottom: 25px;
+        }
+
+        .product-features h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .product-features ul {
+            list-style-type: none;
+        }
+
+        .product-features li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0e6ed;
+        }
+
+        .quantity {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1400;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-sidebar {
+                width: 340px;
+            }
+            
+            .cart-text {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                height: 60vh;
+                margin-top: 70px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .cart-sidebar {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    TrendStyle
+                </a>
+                 <li class="cart-icon">
+                        <a href="#" id="cart-toggle">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-text">Cart</span>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+           
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Trending Products</h1>
+                <p>Explore our curated collection of the latest and most popular items. Quality products with modern design at affordable prices.</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </div>
+        <div class="hero-shape"></div>
+    </section>
+
+    <!-- Products Section --> <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trending Products</h2>
+                <p>Check out our selection of popular items loved by customers worldwide.</p>
+            </div>
+            <div class="products-grid" id="products-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Product Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="Product Image">
+                </div>
+                <div class="modal-details">
+                    <h3 id="modal-title">Product Title</h3>
+                    <div class="modal-price" id="modal-price">$0.00</div>
+                    <div class="modal-description" id="modal-description">Product description will appear here.</div>
+                    
+                    <div class="product-features">
+                        <h4>Key Features</h4>
+                        <ul id="modal-features">
+                            <!-- Features will be dynamically inserted -->
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <span>Quantity:</span>
+                        <button class="quantity-btn" id="decrease-qty">-</button>
+                        <span class="quantity" id="quantity">1</span>
+                        <button class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-success" id="add-to-cart-modal">Add to Cart</button>
+                        <button class="btn btn-outline" id="close-modal-btn">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically inserted -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-success checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Product added to cart!</span>
+    </div>
+
+    <script>
+        // Product data - expanded with more products
+        const products = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Headphones",
+                price: 79.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "High-quality wireless headphones with noise cancellation and 30-hour battery life.",
+                features: [
+                    "Active noise cancellation",
+                    "30-hour battery life",
+                    "Comfortable over-ear design",
+                    "Built-in microphone for calls",
+                    "Bluetooth 5.0 connectivity"
+                ]
+            },
+            {
+                id: 2,
+                name: "Smart Fitness Watch",
+                price: 129.99,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80",
+                description: "Track your fitness goals with this advanced smartwatch featuring heart rate monitoring and GPS.",
+                features: [
+                    "Heart rate monitoring",
+                    "GPS tracking",
+                    "Water resistant up to 50m",
+                    "7-day battery life",
+                    "Smart notifications"
+                ]
+            },
+     
+            {
+                id: 4,
+                name: "Organic Cotton T-Shirt",
+                price: 24.99,
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80",
+                description: "Comfortable and sustainable t-shirt made from 100% organic cotton.",
+                features: [
+                    "100% organic cotton",
+                    "Machine washable",
+                    "Available in multiple colors",
+                    "Classic fit",
+                    "Eco-friendly production"
+                ]
+            },
+            {
+                id: 5,
+                name: "Portable Bluetooth Speaker",
+                price: 59.99,
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80",
+                description: "Compact yet powerful Bluetooth speaker with impressive sound quality and 12-hour battery.",
+                features: [
+                    "360-degree sound",
+                    "12-hour battery life",
+                    "IPX7 waterproof rating",
+                    "Built-in microphone",
+                    "Compact and portable"
+                ]
+            },
+            {
+                id: 6,
+                name: "Ceramic Coffee Mug Set",
+                price: 34.99,
+                image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Set of 4 beautifully crafted ceramic mugs, perfect for your morning coffee or tea.",
+                features: [
+                    "Set of 4 mugs",
+                    "Handcrafted ceramic",
+                    "Dishwasher and microwave safe",
+                    "Comfortable handle design",
+                    "Elegant minimalist style"
+                ]
+            },
+          
+            {
+                id: 8,
+                name: "Laptop Backpack",
+                price: 49.99,
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Durable and stylish backpack with dedicated laptop compartment and multiple pockets.",
+                features: [
+                    "Fits up to 15-inch laptops",
+                    "Multiple organizational pockets",
+                    "Padded shoulder straps",
+                    "Water-resistant material",
+                    "USB charging port"
+                ]
+            },
+            {
+                id: 9,
+                name: "Stainless Steel Water Bottle",
+                price: 24.99,
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Keep your drinks hot or cold for hours with this insulated stainless steel bottle.",
+                features: [
+                    "Double-wall insulation",
+                    "24-hour temperature retention",
+                    "Leak-proof lid",
+                    "BPA-free materials",
+                    "Multiple color options"
+                ]
+            },
+            {
+                id: 10,
+                name: "Yoga Mat Premium",
+                price: 39.99,
+                image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                description: "Non-slip yoga mat with excellent cushioning for all types of exercise.",
+                features: [
+                    "Non-slip surface",
+                    "Extra thick for joint protection",
+                    "Eco-friendly materials",
+                    "Easy to clean",
+                    "Includes carrying strap"
+                ]
+            },
+            {
+                id: 11,
+                name: "Smartphone Camera Lens Kit",
+                price: 34.99,
+                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1338&q=80",
+                description: "Professional camera lens kit that attaches to your smartphone for enhanced photography.",
+                features: [
+                    "Wide-angle, macro, and fisheye lenses",
+                    "Universal smartphone compatibility",
+                    "Easy clip-on attachment",
+                    "Includes carrying case",
+                    "Enhance your mobile photography"
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const productsContainer = document.getElementById('products-container');
+        const productModal = document.getElementById('product-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDescription = document.getElementById('modal-description');
+        const modalFeatures = document.getElementById('modal-features');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const closeModal = document.querySelector('.close-modal');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartToggle = document.getElementById('cart-toggle');
+        const closeCart = document.querySelector('.close-cart');
+        const overlay = document.getElementById('overlay');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.querySelector('.cart-count');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const decreaseQty = document.getElementById('decrease-qty');
+        const increaseQty = document.getElementById('increase-qty');
+        const quantityDisplay = document.getElementById('quantity');
+        const addToCartModal = document.getElementById('add-to-cart-modal');
+        
+                // State
+        let cart = [];
+        let currentProduct = null;
+        let currentQuantity = 1;
+
+        // Initialize the page
+        function init() {
+            renderProducts();
+            setupEventListeners();
+        }
+
+        // Render products to the page
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-badge">Trending</div>
+                    </div>
+                    <div class="product-content">
+                        <h3>${product.name}</h3>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="btn btn-outline view-btn" data-id="${product.id}">View Details</button>
+                            <button class="btn add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // View product details
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('view-btn')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    openProductModal(productId);
+                }
+                
+                // Add to cart from product grid
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    addToCart(productId, 1);
+                    showToast('Product added to cart!');
+                }
+            });
+
+            // Modal controls
+            closeModalBtn.addEventListener('click', closeProductModal);
+            closeModal.addEventListener('click', closeProductModal);
+            
+            // Cart controls
+            cartToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCart();
+            });
+            
+            closeCart.addEventListener('click', closeCartSidebar);
+            overlay.addEventListener('click', function() {
+                closeCartSidebar();
+                closeProductModal();
+            });
+
+            // Quantity controls
+            decreaseQty.addEventListener('click', function() {
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    quantityDisplay.textContent = currentQuantity;
+                }
+            });
+
+            increaseQty.addEventListener('click', function() {
+                currentQuantity++;
+                quantityDisplay.textContent = currentQuantity;
+            });
+
+            // Add to cart from modal
+            addToCartModal.addEventListener('click', function() {
+                if (currentProduct) {
+                    addToCart(currentProduct.id, currentQuantity);
+                    showToast('Product added to cart!');
+                    closeProductModal();
+                }
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Open product modal
+        function openProductModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            currentQuantity = 1;
+            
+            if (currentProduct) {
+                modalImg.src = currentProduct.image;
+                modalTitle.textContent = currentProduct.name;
+                modalPrice.textContent = `$${currentProduct.price.toFixed(2)}`;
+                modalDescription.textContent = currentProduct.description;
+                
+                // Clear and populate features
+                modalFeatures.innerHTML = '';
+                currentProduct.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    modalFeatures.appendChild(li);
+                });
+                
+                quantityDisplay.textContent = currentQuantity;
+                productModal.style.display = 'block';
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            productModal.style.display = 'none';
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open cart sidebar
+        function openCart() {
+            cartSidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderCartItems();
+        }
+
+        // Close cart sidebar
+        function closeCartSidebar() {
+            cartSidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add product to cart
+        function addToCart(productId, quantity) {
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: quantity
+                    });
+                }
+                
+                updateCartUI();
+            }
+        }
+
+        // Remove product from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            renderCartItems();
+        }
+
+        // Update cart quantity
+        function updateCartItemQuantity(productId, newQuantity) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    item.quantity = newQuantity;
+                }
+                
+                updateCartUI();
+                renderCartItems();
+            }
+        }
+
+        // Update cart UI (count and total)
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        // Render cart items
+        function renderCartItems() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="decrease" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increase" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="cart-item-remove" data-id="${item.id}">Remove</button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Add event listeners to cart item buttons
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === productId);
+                    if (item) {
+                        updateCartItemQuantity(productId, item.quantity - 1);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === productId);
+                    if (item) {
+                        updateCartItemQuantity(productId, item.quantity + 1);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // Initialize the application
+        init();
+    </script>
+</body>
+</html>
